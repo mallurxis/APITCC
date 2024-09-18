@@ -1,3 +1,4 @@
+-- criando banco de dados
 create database dbTCC;
  
 -- acessando banco de dados;
@@ -24,6 +25,7 @@ create table tbProdutos(
 codProd int not null auto_increment,
 nomeProd varchar(100) not null,
 quant char(3),
+mult decimal (9,2),
 valorProd decimal(9,2),
 validade date,
 dataEntrada date,
@@ -33,20 +35,27 @@ create table tbPratos(
 codPrato int not null auto_increment,
 nomePrato varchar(100) not null,
 precoPrato decimal (9,2),
-quantPrato decimal(9,2),
+pesoPrato decimal(9,2),
 codProd int not null,
 primary key(codPrato),
 foreign key(codProd)references tbProdutos(codProd));
 
 create table tbCardapio(
+codCardapio int not null auto_increment,
 semana date,
 nomePrato varchar(100) not null,
 nomeProduto varchar(100) not null,
 precoPrato decimal(9,2),
-primary key(nomePrato),
-foreign key(codPrato) references tbPratos(codPrato)
-foreign key(codAluno) references tbAlunos(codAluno)
-foreign key(codProf) references tbProfessores(codProf));
+codAluno int not null,
+codProf int not null,
+codPrato int not null,
+primary key(codCardapio),
+foreign key(codAluno) references tbAlunos(codAluno),
+foreign key(codProf) references tbProfessores(codProf),
+foreign key(codPrato) references tbPratos(codPrato));
+
+
 
 
 )
+ 
